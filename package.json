@@ -1,0 +1,42 @@
+{
+    "name": "mediflow-fe",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "eslint",
+        "type-check": "tsc --noEmit",
+        "format": "prettier --write .",
+        "format:check": "prettier --check .",
+        "prepare": "husky"
+    },
+    "dependencies": {
+        "next": "^16.2.6",
+        "react": "^19.2.6",
+        "react-dom": "^19.2.6"
+    },
+    "lint-staged": {
+        "*.{ts,tsx}": [
+            "eslint --fix",
+            "prettier --write"
+        ],
+        "*.{json,css,md}": [
+            "prettier --write"
+        ]
+    },
+    "devDependencies": {
+        "@types/node": "^25.9.1",
+        "@types/react": "^19.2.15",
+        "@types/react-dom": "^19.2.3",
+        "eslint": "^9.39.4",
+        "eslint-config-next": "^16.2.6",
+        "eslint-config-prettier": "^10.1.8",
+        "eslint-plugin-prettier": "^5.5.5",
+        "husky": "^9.1.7",
+        "lint-staged": "^16.4.0",
+        "prettier": "^3.8.3",
+        "typescript": "^6.0.3"
+    }
+}
