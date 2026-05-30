@@ -1,0 +1,45 @@
+.pageTable {
+    composes: glass from '../../styles/mixins.module.css';
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+}
+
+.filterBar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 22px;
+    border-bottom: 1px solid var(--border-1);
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 22px;
+    border-top: 1px solid var(--border-1);
+}
+
+.pageTable > .filterBar {
+    flex: none;
+}
+.pageTable > .pagination {
+    flex: none;
+}
+.pageTable > .tableBlock,
+.pageTable > .cardList,
+.pageTable > .specGrid {
+    flex: 1 1 auto;
+    min-height: 0;
+}
+
+.specGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    align-content: start;
+    gap: 12px;
+    padding: 20px 22px;
+    overflow-y: auto;
+}

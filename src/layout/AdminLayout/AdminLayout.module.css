@@ -1,0 +1,15 @@
+.layout {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: grid;
+    grid-template-columns: var(--sidebar-w) 1fr;
+    grid-template-rows: var(--topbar-h) 1fr;
+    grid-template-areas: 'sidebar topbar' 'sidebar main';
+    gap: 16px;
+    padding: 16px;
+}
+
+.main {
+    grid-area: main;
+}

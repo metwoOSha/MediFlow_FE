@@ -1,0 +1,58 @@
+.navSection {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 6px 4px;
+}
+
+.navLabel {
+    font-size: 10px;
+    color: var(--text-4);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 14px 10px 6px;
+}
+
+.navItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 12px;
+    border-radius: 12px;
+    color: var(--text-2);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition:
+        background 160ms ease,
+        color 160ms ease,
+        transform 160ms ease;
+    position: relative;
+    border: 1px solid transparent;
+}
+
+.navItem:not(.active):hover {
+    background: var(--glass-hover);
+    color: var(--text-1);
+}
+
+.active {
+    color: #fff;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.22), rgba(94, 234, 212, 0.1));
+    border-color: rgba(16, 185, 129, 0.35);
+    box-shadow:
+        0 8px 24px -10px var(--blue-glow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.active::before {
+    content: '';
+    position: absolute;
+    left: -14px;
+    top: 10px;
+    bottom: 10px;
+    width: 3px;
+    border-radius: 4px;
+    background: linear-gradient(180deg, var(--cyan), var(--blue));
+    box-shadow: 0 0 12px var(--cyan-glow);
+}

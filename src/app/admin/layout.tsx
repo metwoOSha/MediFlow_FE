@@ -1,7 +1,13 @@
-export default function AdminLayout({
+import AdminLayout from '../../layout/AdminLayout/AdminLayout';
+
+export default function Layout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    return <div />;
+    return (
+        <>
+            <AdminLayout>{children}</AdminLayout>
+        </>
+    );
 }

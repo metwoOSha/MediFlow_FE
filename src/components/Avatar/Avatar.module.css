@@ -1,0 +1,20 @@
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #0d9488, #5eead4);
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+    font-size: 13px;
+    color: #0a0f1e;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    position: relative;
+}
+
+.sm {
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    font-size: 12px;
+}

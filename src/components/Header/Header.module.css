@@ -1,0 +1,42 @@
+.header {
+    composes: glass from '../../styles/mixins.module.css';
+    grid-area: topbar;
+    display: flex;
+    align-items: center;
+    padding: 0 22px;
+    gap: 18px;
+}
+.hamburgerButton {
+    display: none;
+}
+
+@media (max-width: 1280px) {
+    .hamburgerButton {
+        display: grid;
+    }
+}
+
+.topBar {
+    display: flex;
+    flex-direction: column;
+}
+
+.crumb {
+    font-size: 11px;
+    color: var(--text-3);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.title {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.headerActions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}

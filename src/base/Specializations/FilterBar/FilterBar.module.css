@@ -1,0 +1,18 @@
+.filterInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.filterTitle {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.filterSubTitle {
+    font-size: 12px;
+    color: var(--text-3);
+}
+
+.spacer {
+    flex: 1;
+}

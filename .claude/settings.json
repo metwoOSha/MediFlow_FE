@@ -1,0 +1,7 @@
+{
+    "permissions": {
+        "allow": [
+            "PowerShell($content = Get-Content \"C:\\\\Users\\\\dimad\\\\Downloads\\\\MediFlow standalone.html\" -Raw -Encoding UTF8; $matches = [regex]::Matches\\($content, 'spec-card'\\); Write-Host \"Total spec-card occurrences: $\\($matches.Count\\)\"; foreach \\($m in $matches\\) { Write-Host \"At index: $\\($m.Index\\)\" })"
+        ]
+    }
+}
