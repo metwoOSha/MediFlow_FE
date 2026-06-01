@@ -1,6 +1,7 @@
 'use client';
 
 import SpecializationsCard from '@/components/SpecializationsCard/SpecializationsCard';
+import cls from './SpecializationsList.module.css';
 
 export const SPECIALIZATIONS = [
     { id: 1, spec: 'Cardiology', count: 12 },
@@ -16,10 +17,10 @@ export const SPECIALIZATIONS = [
 
 export default function SpecializationsList() {
     return (
-        <>
+        <div className={cls.specGrid}>
             {SPECIALIZATIONS.map(({ id, spec, count }) => (
                 <SpecializationsCard key={id} spec={spec} count={count} />
             ))}
-        </>
+        </div>
     );
 }

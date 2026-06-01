@@ -19,3 +19,9 @@ export const SPEC_COLORS: Record<string, { sp1: string; sp2: string }> = {
     'Internal Medicine': { sp1: '#fbbf24', sp2: '#f97316' },
     Pharmacology: { sp1: '#84cc16', sp2: '#22d3ee' },
 };
+
+export const CATEGORY_COLORS: Record<string, string> = {
+    Highest: '#a78bfa',
+    First: '#60a5fa',
+    Second: '#34d399',
+};

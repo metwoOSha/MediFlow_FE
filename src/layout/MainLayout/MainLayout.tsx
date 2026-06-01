@@ -14,7 +14,7 @@ export default function MainLayout({
     return (
         <div className={cls.pageTable}>
             <div className={cls.filterBar}>{FilterBar}</div>
-            <div className={cls.specGrid}>{children}</div>
+            {children}
             {pagination && <div className={cls.pagination}>pagination</div>}
         </div>
     );

@@ -92,17 +92,26 @@ body::before {
 }
 
 /* scrollbar */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(148, 163, 184, 0.22) transparent;
+}
 *::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 5px;
+    height: 5px;
 }
 *::-webkit-scrollbar-track {
     background: transparent;
+    margin: 10px 0;
 }
 *::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(148, 163, 184, 0.22);
     border-radius: 999px;
+    min-height: 48px;
 }
 *::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(148, 163, 184, 0.34);
+}
+*::-webkit-scrollbar-corner {
+    background: transparent;
 }

@@ -5,11 +5,12 @@ import cls from './Input.module.css';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     placeholder?: string;
+    style?: React.CSSProperties;
 }
 
-export default function Input({ placeholder }: InputProps) {
+export default function Input({ placeholder, style }: InputProps) {
     return (
-        <div className={cls.headerSearch}>
+        <div className={cls.headerSearch} style={style}>
             <span className={cls.field}>
                 <SearchIcon />
             </span>

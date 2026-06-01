@@ -2,7 +2,7 @@ export const HEADER_CONFIG = {
     '/admin': {
         id: 1,
         crumb: 'OVERVIEW',
-        title: 'Welcome back, Dr. Reyes',
+        title: 'Dashboard',
     },
     '/admin/doctors': {
         id: 2,

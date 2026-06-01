@@ -1,9 +1,9 @@
-export function DeleteIcon(props: React.SVGProps<SVGSVGElement>) {
+export function PhoneIcon(props: React.SVGProps<SVGSVGElement>) {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="14"
-            height="14"
+            width="13"
+            height="13"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -12,9 +12,7 @@ export function DeleteIcon(props: React.SVGProps<SVGSVGElement>) {
             strokeLinejoin="round"
             {...props}
         >
-            <path d="M4 7h16" />
-            <path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2" />
-            <path d="M6 7l1 13a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-13" />
+            <path d="M5 4h3l2 5-2 1a11 11 0 0 0 6 6l1-2 5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"></path>
         </svg>
     );
 }

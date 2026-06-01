@@ -13,7 +13,6 @@ export function Sidebar({ ...props }) {
         <aside className={cls.aside} {...props}>
             <Brand />
             <NavSection label="Workspace" items={WORKSPACE_NAV_ITEMS} />
-            <NavSection label="Settings" items={SYSTEM_NAV_ITEMS} />
             <div className={cls.sidebarFooter}>
                 <div className={cls.navItem}>
                     <LogOutIcon />

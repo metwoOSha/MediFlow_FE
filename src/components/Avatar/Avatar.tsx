@@ -9,7 +9,7 @@ interface AvatarProps {
 
 export function Avatar({ size = 'sm', name }: AvatarProps) {
     return (
-        <div className={`${cls.avatar} cls.${size}`} style={{ background: getAvatarGradient(name) }}>
+        <div className={`${cls.avatar} ${cls[size]}`} style={{ background: getAvatarGradient(name) }}>
             {getInitials(name)}
         </div>
     );
