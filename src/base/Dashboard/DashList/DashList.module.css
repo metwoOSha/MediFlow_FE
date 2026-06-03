@@ -1,0 +1,32 @@
+.tableBlock {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    padding: 0;
+    --table-pad: 22px;
+}
+
+.tableHead {
+    flex: none;
+    overflow: hidden;
+    padding-left: var(--table-pad);
+    padding-right: var(--table-pad);
+}
+
+.table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 13.5px;
+}
+
+.tableScroll {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: 8px;
+    padding-left: var(--table-pad);
+    padding-right: var(--table-pad);
+}

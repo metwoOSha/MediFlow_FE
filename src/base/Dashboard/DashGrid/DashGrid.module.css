@@ -1,0 +1,51 @@
+.gridTable {
+    composes: glass from '../../../styles/mixins.module.css';
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+    background:
+        radial-gradient(520px 280px at 0% 0%, color-mix(in srgb, var(--blue) 10%, transparent), transparent 62%),
+        radial-gradient(480px 320px at 100% 100%, color-mix(in srgb, var(--cyan) 7%, transparent), transparent 60%),
+        linear-gradient(180deg, var(--glass-2), var(--glass-1));
+}
+
+.cardHead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    padding: 20px 22px 0px;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+}
+
+.cardTitle {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.cardSub {
+    font-size: 12px;
+    color: var(--text-3);
+}
+
+.cardLink {
+    font-size: 12.5px;
+    color: var(--blue);
+    cursor: pointer;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.tableBlock {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    padding: 0;
+    --table-pad: 22px;
+}

@@ -1,3 +1,5 @@
+import DashboardIndex from '@/base/Dashboard/DashboardIndex/DashboardIndex';
+
 export default function page() {
-    return <div>dashboard</div>;
+    return <DashboardIndex />;
 }

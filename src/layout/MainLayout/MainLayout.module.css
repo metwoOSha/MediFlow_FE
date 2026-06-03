@@ -3,6 +3,10 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+    background:
+        radial-gradient(520px 280px at 0% 0%, color-mix(in srgb, var(--blue) 10%, transparent), transparent 62%),
+        radial-gradient(480px 320px at 100% 100%, color-mix(in srgb, var(--cyan) 7%, transparent), transparent 60%),
+        linear-gradient(180deg, var(--glass-2), var(--glass-1));
     overflow: hidden;
 }
 

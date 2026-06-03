@@ -5,6 +5,10 @@
     align-items: center;
     padding: 0 22px;
     gap: 18px;
+    background:
+        radial-gradient(420px 220px at 0% 0%, color-mix(in srgb, var(--cyan) 12%, transparent), transparent 65%),
+        radial-gradient(620px 260px at 100% 120%, color-mix(in srgb, var(--blue) 10%, transparent), transparent 60%),
+        linear-gradient(180deg, var(--glass-2), var(--glass-1));
 }
 .hamburgerButton {
     display: none;

@@ -115,3 +115,21 @@ body::before {
 *::-webkit-scrollbar-corner {
     background: transparent;
 }
+
+thead th {
+    text-align: left;
+    font-size: 11px;
+    color: var(--text-3);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border-1);
+}
+
+tbody td {
+    padding: 14px;
+    border-bottom: 1px solid var(--border-1);
+    color: var(--text-1);
+    vertical-align: middle;
+}

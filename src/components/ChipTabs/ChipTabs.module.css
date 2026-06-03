@@ -1,0 +1,53 @@
+.chipTabs {
+    display: flex;
+    gap: 4px;
+    padding: 4px;
+    border-radius: 12px;
+    background: var(--glass-1);
+    border: 1px solid var(--border-1);
+}
+
+.chipTab {
+    padding: 7px 14px;
+    font-size: 12.5px;
+    font-weight: 500;
+    border-radius: 9px;
+    cursor: pointer;
+    color: var(--text-2);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid transparent;
+    transition: all 140ms ease;
+}
+
+.count {
+    font-size: 11px;
+    padding: 1px 6px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.07);
+    color: var(--text-3);
+}
+
+.active {
+    background: linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--blue) 25%, transparent),
+        color-mix(in srgb, var(--blue) 10%, transparent)
+    );
+    color: #fff;
+    border-color: color-mix(in srgb, var(--blue) 30%, transparent);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    box-shadow: currentcolor 0px 0px 8px;
+}
+
+.countActive {
+    background: color-mix(in srgb, var(--cyan) 18%, transparent);
+    color: var(--cyan);
+}
