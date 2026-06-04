@@ -1,0 +1,96 @@
+.overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: grid;
+    place-items: center;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(4px);
+    animation: fadeIn 150ms ease both;
+}
+
+.modal {
+    width: 100%;
+    max-width: 460px;
+    border-radius: 22px;
+    padding: 22px;
+    background: linear-gradient(180deg, rgba(20, 26, 40, 0.98), rgba(11, 14, 24, 0.99));
+    border: 1px solid var(--border-3);
+    box-shadow:
+        0 40px 90px -20px rgba(0, 0, 0, 0.75),
+        inset 0 1px 0 rgba(255, 255, 255, 0.07);
+    animation: mbIn 200ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes mbIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modalHead {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.modalTitleWrap {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.modalEyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green);
+}
+
+.modalTitle {
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.modalCloseBtn {
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border-radius: 10px;
+    background: var(--glass-1);
+    border: 1px solid var(--border-1);
+    color: var(--text-2);
+    cursor: pointer;
+    transition: all 150ms ease;
+}
+
+.modalForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 13px;
+    margin-bottom: 22px;
+}
+
+.modalFoot {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}

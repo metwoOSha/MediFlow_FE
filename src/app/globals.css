@@ -133,3 +133,14 @@ tbody td {
     color: var(--text-1);
     vertical-align: middle;
 }
+
+.mf-field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    min-width: 0;
+}
+
+.full {
+    grid-column: 1 / -1;
+}

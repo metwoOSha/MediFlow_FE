@@ -2,13 +2,15 @@
 
 import { DeleteIcon } from '../Icons/Buttons/DeleteIcon';
 import { EditIcon } from '../Icons/Buttons/EditIcon';
+import { ManageIcon } from '../Icons/Buttons/ManageIcon';
 import { PlusIcon } from '../Icons/Buttons/PlusIcon';
 import { ScheduleIcon } from '../Icons/Buttons/ScheduleIcon';
+import { EyeIcon } from '../Icons/Specializations/EyeIcon';
 import cls from './Buttons.module.css';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    variant?: 'icon' | 'primary' | 'row';
-    action?: 'edit' | 'delete' | 'schedule';
+    variant?: 'icon' | 'primary' | 'row' | 'manage' | 'ghost';
+    action?: 'edit' | 'delete' | 'schedule' | 'view';
     icon?: React.ReactElement;
     className?: string;
     text?: string;
@@ -36,7 +38,23 @@ export default function Buttons({ variant = 'icon', icon, className, text, actio
                     <DeleteIcon />
                 ) : action === 'schedule' ? (
                     <ScheduleIcon />
+                ) : action === 'view' ? (
+                    <EyeIcon width={16} height={16} />
                 ) : null)}
+            {variant === 'manage' && (
+                <>
+                    <ManageIcon />
+                    <span>Manage</span>
+                </>
+            )}
+
+            {variant === 'ghost' && (
+                <>
+                    <>
+                        <span>{text}</span>
+                    </>
+                </>
+            )}
         </button>
     );
 }

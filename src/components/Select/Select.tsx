@@ -13,13 +13,13 @@ interface SelectItem {
 }
 
 interface SelectProps {
-    title: string;
+    title?: string;
     items: SelectItem[];
 }
 
 export default function Select({ title, items }: SelectProps) {
     const [active, setActive] = useState<boolean>(false);
-    const [option, setOption] = useState<string>(title);
+    const [option, setOption] = useState<string>(title ?? items[0]?.spec ?? '');
 
     const ref = useRef<HTMLDivElement>(null);
 
@@ -58,14 +58,16 @@ export default function Select({ title, items }: SelectProps) {
 
             {active && (
                 <ul role="listbox" className={cls.panel}>
-                    <SelectOption
-                        label={title}
-                        isSelected={option === title}
-                        onClick={() => {
-                            setOption(title);
-                            setActive(false);
-                        }}
-                    />
+                    {title && (
+                        <SelectOption
+                            label={title}
+                            isSelected={option === title}
+                            onClick={() => {
+                                setOption(title);
+                                setActive(false);
+                            }}
+                        />
+                    )}
                     {items.map(({ id, spec, color }) => (
                         <SelectOption
                             key={id}

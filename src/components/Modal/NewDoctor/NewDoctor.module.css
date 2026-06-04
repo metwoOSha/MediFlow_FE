@@ -1,0 +1,24 @@
+.input {
+    height: 42px;
+    padding: 0 14px;
+    border-radius: 12px;
+    background: var(--glass-1);
+    border: 1px solid var(--border-1);
+    color: var(--text-1);
+    font-family: inherit;
+    font-size: 13.5px;
+    font-weight: 500;
+    outline: none;
+    transition: all 150ms ease;
+    width: 100%;
+}
+
+.input:hover {
+    border-color: var(--border-2);
+}
+
+.input:focus {
+    border-color: color-mix(in srgb, var(--green) 50%, transparent);
+    background: var(--glass-2);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--green) 12%, transparent);
+}

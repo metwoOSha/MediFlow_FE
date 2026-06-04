@@ -1,5 +1,5 @@
+import Table from '@/components/Table/Table';
 import ListItem from '../ListItem/ListItem';
-import cls from './DashList.module.css';
 
 const columns = [
     { id: 1, title: 'Patient', width: '36%' },
@@ -8,37 +8,19 @@ const columns = [
     { id: 4, title: 'Status', width: '16%' },
 ];
 
+const DASH_LIST = [
+    {
+        id: 1,
+        name: 'Dmytro Dobrovolskyi',
+        doctor: 'Dr. Amelia Hart',
+        spec: 'Cardiology',
+        time: '09:30',
+        status: 'Confirmed',
+    },
+    { id: 2, name: 'Sarah Johnson', doctor: 'Dr. James Lee', spec: 'Neurology', time: '11:00', status: 'Pending' },
+    { id: 3, name: 'Michael Brown', doctor: 'Dr. Amelia Hart', spec: 'Cardiology', time: '14:15', status: 'Confirmed' },
+];
+
 export default function DashList() {
-    return (
-        <div className={cls.tablelock}>
-            <div className={cls.tableHead}>
-                <table className={cls.table}>
-                    <colgroup>
-                        {columns.map(({ id, width }) => (
-                            <col key={id} style={{ width: `${width}` }}></col>
-                        ))}
-                    </colgroup>
-                    <thead>
-                        <tr>
-                            {columns.map(({ id, title }) => (
-                                <th key={id}>{title}</th>
-                            ))}
-                        </tr>
-                    </thead>
-                </table>
-            </div>
-            <div className={cls.tableScroll}>
-                <table className={cls.table}>
-                    <colgroup>
-                        {columns.map(({ id, width }) => (
-                            <col key={id} style={{ width: `${width}` }}></col>
-                        ))}
-                    </colgroup>
-                    <tbody>
-                        <ListItem name="Dmytro Dobrovolskyi" />
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    );
+    return <Table columns={columns} data={DASH_LIST} ListItem={ListItem} />;
 }

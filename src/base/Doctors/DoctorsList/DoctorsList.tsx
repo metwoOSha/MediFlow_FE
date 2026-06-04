@@ -1,7 +1,7 @@
 'use client';
 
+import Table from '@/components/Table/Table';
 import ListItem from '../ListItem/ListItem';
-import cls from './DoctorsList.module.css';
 
 const columns = [
     { id: 1, title: 'Doctor', width: '23%' },
@@ -9,7 +9,7 @@ const columns = [
     { id: 3, title: 'Category', width: '11%' },
     { id: 4, title: 'Phone', width: '18%' },
     { id: 5, title: 'Schedule', width: '21%' },
-    { id: 6, title: 'Actions', width: '12%' },
+    { id: 6, title: 'Actions', width: '12%', align: 'right' as const },
 ];
 
 export const DOCTORS_LIST = [
@@ -43,44 +43,5 @@ export const DOCTORS_LIST = [
 ];
 
 export default function DoctorsList() {
-    return (
-        <div className={cls.tableBlock}>
-            <div className={cls.tableHead}>
-                <table className={cls.table}>
-                    <colgroup>
-                        {columns.map(({ id, width }) => (
-                            <col key={id} style={{ width: `${width}` }} />
-                        ))}
-                    </colgroup>
-                    <thead className={cls.thead}>
-                        <tr>
-                            {columns.map(({ id, title }, index) => (
-                                <th
-                                    key={id}
-                                    className={cls.th}
-                                    style={{ textAlign: index === columns.length - 1 ? 'right' : 'left' }}
-                                >
-                                    {title}
-                                </th>
-                            ))}
-                        </tr>
-                    </thead>
-                </table>
-            </div>
-            <div className={cls.tableBody}>
-                <table className={cls.table}>
-                    <colgroup>
-                        {columns.map(({ id, width }) => (
-                            <col key={id} style={{ width: `${width}` }} />
-                        ))}
-                    </colgroup>
-                    <tbody>
-                        {DOCTORS_LIST.map((item) => (
-                            <ListItem key={item.id} {...item} />
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    );
+    return <Table columns={columns} data={DOCTORS_LIST} ListItem={ListItem} />;
 }
