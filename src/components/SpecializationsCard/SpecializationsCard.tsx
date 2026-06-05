@@ -17,7 +17,7 @@ export default function SpecializationsCard({ spec, count }: SpecializationsCard
             <div className={cls.specIcon}>{getSpecIcon(spec)}</div>
             <div className={cls.specInfo}>
                 <span className={cls.specName}>{spec}</span>
-                <span className={cls.specCount}>{count} doctors</span>
+                <span className={cls.specCount}>{`${count} doctors`}</span>
             </div>
             <div className={cls.specActions}>
                 <Buttons variant="row" action="edit" />
