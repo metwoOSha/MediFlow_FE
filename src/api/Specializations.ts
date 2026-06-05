@@ -1,9 +1,10 @@
 import { get, post, del } from './http';
+import type { Specialization } from '@/types/specializations';
 
 const GET_SPECIALIZATIONS_URL = '/specializations';
 const GET_SPECIALIZATIONS_URL_BY_ID = (id: string) => `/specializations/${id}`;
 
-export async function getSpecializations() {
+export async function getSpecializations(): Promise<Specialization[]> {
     const res = await get(GET_SPECIALIZATIONS_URL);
     return res.json();
 }

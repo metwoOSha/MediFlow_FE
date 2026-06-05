@@ -2,24 +2,18 @@
 
 import SpecializationsCard from '@/components/SpecializationsCard/SpecializationsCard';
 import cls from './SpecializationsList.module.css';
+import type { Specialization } from '@/types/specializations';
 
-export const SPECIALIZATIONS = [
-    { id: 1, spec: 'Cardiology', count: 12 },
-    { id: 2, spec: 'Neurology', count: 9 },
-    { id: 3, spec: 'Pediatrics', count: 14 },
-    { id: 4, spec: 'Orthopedics', count: 8 },
-    { id: 5, spec: 'Dermatology', count: 6 },
-    { id: 6, spec: 'Ophthalmology', count: 5 },
-    { id: 7, spec: 'Dentistry', count: 7 },
-    { id: 8, spec: 'Internal Medicine', count: 11 },
-    { id: 9, spec: 'Pharmacology', count: 4 },
-];
+interface SpecializationsListProps {
+    data: Specialization[];
+}
 
-export default function SpecializationsList() {
+export default function SpecializationsList({ data }: SpecializationsListProps) {
+    console.log(data);
     return (
         <div className={cls.specGrid}>
-            {SPECIALIZATIONS.map(({ id, spec, count }) => (
-                <SpecializationsCard key={id} spec={spec} count={count} />
+            {data.map(({ id, specialization_name, doctors_count }) => (
+                <SpecializationsCard key={id} spec={specialization_name} count={doctors_count} />
             ))}
         </div>
     );
