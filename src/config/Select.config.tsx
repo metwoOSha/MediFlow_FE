@@ -1,6 +1,6 @@
 import { CATEGORY_COLORS } from './Gradient.config';
 
-export type SelectItem = { id: number; spec: string; color: string };
+export type SelectItem = { id: number; spec: string; label?: string; color: string };
 
 export const SPECIALIZATION_ITEMS: SelectItem[] = [
     { id: 1, spec: 'Cardiology', color: '#f87171' },
@@ -14,7 +14,7 @@ export const SPECIALIZATION_ITEMS: SelectItem[] = [
 ];
 
 export const CATEGORY_ITEMS: SelectItem[] = [
-    { id: 1, spec: 'Highest', color: CATEGORY_COLORS['Highest'] },
-    { id: 2, spec: 'First', color: CATEGORY_COLORS['First'] },
-    { id: 3, spec: 'Second', color: CATEGORY_COLORS['Second'] },
+    { id: 1, spec: 'highest', label: 'Highest', color: CATEGORY_COLORS['highest'] },
+    { id: 2, spec: 'first', label: 'First', color: CATEGORY_COLORS['first'] },
+    { id: 3, spec: 'second', label: 'Second', color: CATEGORY_COLORS['second'] },
 ];

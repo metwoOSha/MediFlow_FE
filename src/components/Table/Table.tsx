@@ -44,7 +44,7 @@ export default function Table<T extends { id: number | string }>({ columns, data
                     </colgroup>
                     <tbody>
                         {data.map((item) => (
-                            <ListItem key={item.id} {...(item as T)} />
+                            <ListItem key={item.id} {...item} />
                         ))}
                     </tbody>
                 </table>

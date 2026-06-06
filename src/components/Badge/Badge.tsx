@@ -7,9 +7,9 @@ interface BadgeProps {
 }
 
 const CATEGORY_CLASS: Record<string, string> = {
-    Highest: 'purple',
-    First: 'blue',
-    Second: 'green',
+    highest: 'purple',
+    first: 'blue',
+    second: 'green',
 };
 
 const STATUS_CLASS: Record<string, string> = {

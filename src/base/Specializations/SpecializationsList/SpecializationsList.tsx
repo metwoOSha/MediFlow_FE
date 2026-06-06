@@ -2,7 +2,7 @@
 
 import SpecializationsCard from '@/components/SpecializationsCard/SpecializationsCard';
 import cls from './SpecializationsList.module.css';
-import type { Specialization } from '@/types/specializations';
+import type { Specialization } from '@/types/specializations.types';
 
 interface SpecializationsListProps {
     data: Specialization[];

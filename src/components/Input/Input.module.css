@@ -32,18 +32,3 @@
     color: var(--text-3);
     pointer-events: none;
 }
-
-.input {
-    height: 42px;
-    padding: 0 14px;
-    border-radius: 12px;
-    background: var(--glass-1);
-    border: 1px solid var(--border-1);
-    color: var(--text-1);
-    font-family: inherit;
-    font-size: 13.5px;
-    font-weight: 500;
-    outline: none;
-    transition: all 150ms ease;
-    width: 100%;
-}

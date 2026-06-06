@@ -12,7 +12,7 @@ const columns = [
     { id: 6, title: 'Actions', width: '14%', align: 'right' as const },
 ];
 
-const APPOINTMENTS_LIST = [
+export const APPOINTMENTS_LIST = [
     {
         id: 1,
         name: 'Olivia Chen',

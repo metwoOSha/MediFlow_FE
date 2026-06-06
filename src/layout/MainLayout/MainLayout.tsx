@@ -7,15 +7,15 @@ export default function MainLayout({
     FilterBar,
     children,
 }: Readonly<{
-    pagination?: boolean;
+    pagination?: React.ReactNode;
     FilterBar?: React.ReactNode;
     children?: React.ReactNode;
 }>) {
     return (
         <div className={cls.pageTable}>
             <div className={cls.filterBar}>{FilterBar}</div>
-            {children}
-            {pagination && <div className={cls.pagination}>pagination</div>}
+            <div className={cls.content}>{children}</div>
+            {pagination}
         </div>
     );
 }

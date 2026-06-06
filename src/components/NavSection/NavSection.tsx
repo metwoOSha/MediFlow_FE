@@ -1,6 +1,6 @@
 'use client';
 
-import type { NavItem } from '@/types/Sidebar.types';
+import type { NavItem } from '@/types/sidebar.types';
 import cls from './NavSection.module.css';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';

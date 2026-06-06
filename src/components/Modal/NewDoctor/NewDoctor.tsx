@@ -9,9 +9,14 @@ import WorkDay from '@/components/WorkDay/WorkDay';
 export default function NewDoctor() {
     return (
         <>
-            <div className="mf-field full">
-                <FormLabel label="Full name">
-                    <input className={cls.input} placeholder="e.g. Dmytro Hart" />
+            <div className="mf-field">
+                <FormLabel label="First name">
+                    <input className={cls.input} placeholder="e.g. Dmytro" />
+                </FormLabel>
+            </div>
+            <div className="mf-field">
+                <FormLabel label="Last name">
+                    <input className={cls.input} placeholder="e.g. Hart" />
                 </FormLabel>
             </div>
             <div className="mf-field">

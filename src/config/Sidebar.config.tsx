@@ -1,4 +1,4 @@
-import type { NavItem } from '@/types/Sidebar.types';
+import type { NavItem } from '@/types/sidebar.types';
 
 import { DashboardIcon } from '@/components/Icons/Sidebar/DashboardIcon';
 import { DoctorIcon } from '@/components/Icons/Sidebar/DoctorIcon';

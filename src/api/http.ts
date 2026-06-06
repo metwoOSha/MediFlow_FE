@@ -1,4 +1,4 @@
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
 async function getAuthHeaders(): Promise<Record<string, string>> {
     if (typeof window === 'undefined') {
@@ -23,8 +23,9 @@ async function handleResponse(res: Response): Promise<Response> {
     return res;
 }
 
-export async function get(url: string): Promise<Response> {
-    const res = await fetch(`${BASE_URL}${url}`, {
+export async function get(url: string, params?: Record<string, string | number>): Promise<Response> {
+    const query = params ? '?' + new URLSearchParams(params as Record<string, string>).toString() : '';
+    const res = await fetch(`${BASE_URL}${url}${query}`, {
         headers: await getAuthHeaders(),
     });
     return handleResponse(res);

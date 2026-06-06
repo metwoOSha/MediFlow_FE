@@ -13,11 +13,22 @@ const DAYS = [
     { id: 7, day: 'Su', active: false },
 ];
 
-export default function WorkDay() {
-    const [days, setDays] = useState(DAYS);
+interface WorkDayProps {
+    initialDays?: number[];
+    onChange?: (days: number[]) => void;
+}
+
+export default function WorkDay({ initialDays, onChange }: WorkDayProps) {
+    const [days, setDays] = useState(() =>
+        DAYS.map((d) => ({ ...d, active: initialDays ? initialDays.includes(d.id) : d.active })),
+    );
 
     function toggleDay(id: number) {
-        setDays((prev) => prev.map((d) => (d.id === id ? { ...d, active: !d.active } : d)));
+        setDays((prev) => {
+            const next = prev.map((d) => (d.id === id ? { ...d, active: !d.active } : d));
+            onChange?.(next.filter((d) => d.active).map((d) => d.id));
+            return next;
+        });
     }
 
     return (

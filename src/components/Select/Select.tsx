@@ -9,17 +9,24 @@ import SelectOption from '../SelectOption/SelectOption';
 interface SelectItem {
     id: number;
     spec: string;
+    label?: string;
     color?: string;
 }
 
 interface SelectProps {
     title?: string;
     items: SelectItem[];
+    value?: string;
+    onChange?: (value: string) => void;
 }
 
-export default function Select({ title, items }: SelectProps) {
+export default function Select({ title, items, value, onChange }: SelectProps) {
     const [active, setActive] = useState<boolean>(false);
-    const [option, setOption] = useState<string>(title ?? items[0]?.spec ?? '');
+
+    const initialItem = value ? items.find((i) => i.spec === value) : null;
+    const [option, setOption] = useState<string>(
+        initialItem ? (initialItem.label ?? initialItem.spec) : (title ?? items[0]?.label ?? items[0]?.spec ?? ''),
+    );
 
     const ref = useRef<HTMLDivElement>(null);
 
@@ -65,18 +72,20 @@ export default function Select({ title, items }: SelectProps) {
                             onClick={() => {
                                 setOption(title);
                                 setActive(false);
+                                onChange?.('');
                             }}
                         />
                     )}
-                    {items.map(({ id, spec, color }) => (
+                    {items.map(({ id, spec, label, color }) => (
                         <SelectOption
                             key={id}
-                            label={spec}
-                            isSelected={option === spec}
+                            label={label ?? spec}
+                            isSelected={option === (label ?? spec)}
                             color={color}
                             onClick={() => {
-                                setOption(spec);
+                                setOption(label ?? spec);
                                 setActive(false);
+                                onChange?.(spec);
                             }}
                         />
                     ))}

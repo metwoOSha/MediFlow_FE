@@ -21,7 +21,7 @@ export const SPEC_COLORS: Record<string, { sp1: string; sp2: string }> = {
 };
 
 export const CATEGORY_COLORS: Record<string, string> = {
-    Highest: '#a78bfa',
-    First: '#60a5fa',
-    Second: '#34d399',
+    highest: '#a78bfa',
+    first: '#60a5fa',
+    second: '#34d399',
 };
