@@ -1,7 +1,6 @@
 'use client';
 
-import { Controller, useForm } from 'react-hook-form';
-import { IMaskInput } from 'react-imask';
+import { useForm } from 'react-hook-form';
 
 import { CloseIcon } from '@/components/Icons/Buttons/CloseIcon';
 import { CheckIcon } from '@/components/Icons/Select/CheckIcon';
@@ -9,8 +8,8 @@ import type { Patient } from '@/types/patients.types';
 import cls from './EditPatient.module.css';
 
 interface FormData {
-    first_name: string;
-    last_name: string;
+    name: string;
+    surname: string;
     email: string;
     phone: string;
 }
@@ -18,22 +17,19 @@ interface FormData {
 interface EditPatientProps {
     patient: Patient;
     onClose: () => void;
-    onSave: (data: Partial<Pick<Patient, 'name' | 'email' | 'phone'>>) => void;
+    onSave: (data: Partial<Pick<Patient, 'name' | 'surname' | 'email' | 'phone'>>) => void;
 }
 
 export default function EditPatient({ patient, onClose, onSave }: EditPatientProps) {
-    const [firstName, ...rest] = patient.name.split(' ');
-
     const {
         register,
         handleSubmit,
-        control,
         formState: { isValid },
     } = useForm<FormData>({
         mode: 'onChange',
         defaultValues: {
-            first_name: firstName,
-            last_name: rest.join(' '),
+            name: patient.name,
+            surname: patient.surname,
             email: patient.email,
             phone: patient.phone,
         },
@@ -41,9 +37,10 @@ export default function EditPatient({ patient, onClose, onSave }: EditPatientPro
 
     const onSubmit = (data: FormData) => {
         onSave({
-            name: `${data.first_name.trim()} ${data.last_name.trim()}`,
+            name: data.name.trim(),
+            surname: data.surname.trim(),
             email: data.email.trim(),
-            phone: data.phone,
+            phone: data.phone.trim(),
         });
     };
 
@@ -52,7 +49,9 @@ export default function EditPatient({ patient, onClose, onSave }: EditPatientPro
             <div className={cls.head}>
                 <div className={cls.titleWrap}>
                     <span className={cls.eyebrow}>Edit patient</span>
-                    <span className={cls.title}>{patient.name}</span>
+                    <span className={cls.title}>
+                        {patient.name} {patient.surname}
+                    </span>
                 </div>
                 <button type="button" aria-label="close" className={cls.closeBtn} onClick={onClose}>
                     <CloseIcon />
@@ -63,11 +62,11 @@ export default function EditPatient({ patient, onClose, onSave }: EditPatientPro
                 <div className={cls.form}>
                     <div className={cls.field}>
                         <span className={cls.label}>First name</span>
-                        <input className={cls.input} {...register('first_name', { required: true })} />
+                        <input className={cls.input} {...register('name', { required: true })} />
                     </div>
                     <div className={cls.field}>
                         <span className={cls.label}>Last name</span>
-                        <input className={cls.input} {...register('last_name', { required: true })} />
+                        <input className={cls.input} {...register('surname', { required: true })} />
                     </div>
                     <div className={`${cls.field} ${cls.full}`}>
                         <span className={cls.label}>Email</span>
@@ -75,20 +74,7 @@ export default function EditPatient({ patient, onClose, onSave }: EditPatientPro
                     </div>
                     <div className={`${cls.field} ${cls.full}`}>
                         <span className={cls.label}>Phone</span>
-                        <Controller
-                            name="phone"
-                            control={control}
-                            rules={{ required: true, minLength: 17 }}
-                            render={({ field }) => (
-                                <IMaskInput
-                                    mask="+0 (000) 000-0000"
-                                    defaultValue={field.value}
-                                    onAccept={(val: string) => field.onChange(val)}
-                                    inputRef={field.ref}
-                                    className={cls.input}
-                                />
-                            )}
-                        />
+                        <input className={cls.input} type="tel" {...register('phone', { required: true })} />
                     </div>
                 </div>
 

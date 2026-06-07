@@ -11,13 +11,18 @@ interface ViewPatientProps {
     onClose: () => void;
 }
 
+const formatDate = (iso: string) =>
+    new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
 export default function ViewPatient({ patient, onClose }: ViewPatientProps) {
+    const fullName = `${patient.name} ${patient.surname}`;
+
     return (
         <div className={cls.modal} onClick={(e) => e.stopPropagation()}>
             <div className={cls.head}>
                 <div className={cls.titleWrap}>
                     <span className={cls.eyebrow}>Patient profile</span>
-                    <span className={cls.title}>{patient.name}</span>
+                    <span className={cls.title}>{fullName}</span>
                 </div>
                 <button type="button" aria-label="close" className={cls.closeBtn} onClick={onClose}>
                     <CloseIcon />
@@ -25,25 +30,12 @@ export default function ViewPatient({ patient, onClose }: ViewPatientProps) {
             </div>
 
             <div className={cls.patientHead}>
-                <div className={cls.avatar} style={{ background: getAvatarGradient(patient.name) }}>
-                    {getInitials(patient.name)}
+                <div className={cls.avatar} style={{ background: getAvatarGradient(fullName) }}>
+                    {getInitials(fullName)}
                 </div>
                 <div className={cls.col}>
-                    <span className={cls.patientName}>{patient.name}</span>
+                    <span className={cls.patientName}>{fullName}</span>
                     <span className={cls.patientEmail}>{patient.email}</span>
-                </div>
-            </div>
-
-            <div className={cls.stats}>
-                <div className={cls.stat}>
-                    <span className={cls.statVal}>{patient.appointments}</span>
-                    <span className={cls.statKey}>Appointments</span>
-                </div>
-                <div className={cls.stat}>
-                    <span className={`${cls.statVal} ${patient.next_visit ? cls.accent : ''}`}>
-                        {patient.next_visit ?? '—'}
-                    </span>
-                    <span className={cls.statKey}>Next visit</span>
                 </div>
             </div>
 
@@ -105,7 +97,7 @@ export default function ViewPatient({ patient, onClose }: ViewPatientProps) {
                         </svg>
                     </span>
                     <span className={cls.rowKey}>Registered</span>
-                    <span className={cls.rowVal}>{patient.registered}</span>
+                    <span className={cls.rowVal}>{formatDate(patient.created_at)}</span>
                 </div>
             </div>
 

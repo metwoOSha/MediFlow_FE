@@ -1,7 +1,6 @@
 'use client';
 
-import { Controller, useForm } from 'react-hook-form';
-import { IMaskInput } from 'react-imask';
+import { useForm } from 'react-hook-form';
 
 import { CloseIcon } from '@/components/Icons/Buttons/CloseIcon';
 import { CheckIcon } from '@/components/Icons/Select/CheckIcon';
@@ -9,33 +8,33 @@ import type { Patient } from '@/types/patients.types';
 import cls from './NewPatient.module.css';
 
 interface FormData {
-    first_name: string;
-    last_name: string;
+    name: string;
+    surname: string;
     email: string;
     phone: string;
 }
 
 interface NewPatientProps {
     onClose: () => void;
-    onSave: (data: Pick<Patient, 'name' | 'email' | 'phone'>) => void;
+    onSave: (data: Pick<Patient, 'name' | 'surname' | 'email' | 'phone'>) => void;
 }
 
 export default function NewPatient({ onClose, onSave }: NewPatientProps) {
     const {
         register,
         handleSubmit,
-        control,
         formState: { isValid },
     } = useForm<FormData>({
         mode: 'onChange',
-        defaultValues: { first_name: '', last_name: '', email: '', phone: '' },
+        defaultValues: { name: '', surname: '', email: '', phone: '' },
     });
 
     const onSubmit = (data: FormData) => {
         onSave({
-            name: `${data.first_name.trim()} ${data.last_name.trim()}`,
+            name: data.name.trim(),
+            surname: data.surname.trim(),
             email: data.email.trim(),
-            phone: data.phone,
+            phone: data.phone.trim(),
         });
     };
 
@@ -55,18 +54,14 @@ export default function NewPatient({ onClose, onSave }: NewPatientProps) {
                 <div className={cls.form}>
                     <div className={cls.field}>
                         <span className={cls.label}>First name</span>
-                        <input
-                            className={cls.input}
-                            placeholder="Olivia"
-                            {...register('first_name', { required: true })}
-                        />
+                        <input className={cls.input} placeholder="Olena" {...register('name', { required: true })} />
                     </div>
                     <div className={cls.field}>
                         <span className={cls.label}>Last name</span>
                         <input
                             className={cls.input}
-                            placeholder="Chen"
-                            {...register('last_name', { required: true })}
+                            placeholder="Kovalenko"
+                            {...register('surname', { required: true })}
                         />
                     </div>
                     <div className={`${cls.field} ${cls.full}`}>
@@ -74,26 +69,17 @@ export default function NewPatient({ onClose, onSave }: NewPatientProps) {
                         <input
                             className={cls.input}
                             type="email"
-                            placeholder="olivia.chen@email.com"
+                            placeholder="olena@email.com"
                             {...register('email', { required: true })}
                         />
                     </div>
                     <div className={`${cls.field} ${cls.full}`}>
                         <span className={cls.label}>Phone</span>
-                        <Controller
-                            name="phone"
-                            control={control}
-                            rules={{ required: true, minLength: 17 }}
-                            render={({ field }) => (
-                                <IMaskInput
-                                    mask="+0 (000) 000-0000"
-                                    placeholder="+1 (415) 555-0000"
-                                    defaultValue={field.value}
-                                    onAccept={(val: string) => field.onChange(val)}
-                                    inputRef={field.ref}
-                                    className={cls.input}
-                                />
-                            )}
+                        <input
+                            className={cls.input}
+                            type="tel"
+                            placeholder="+380991234567"
+                            {...register('phone', { required: true })}
                         />
                     </div>
                 </div>

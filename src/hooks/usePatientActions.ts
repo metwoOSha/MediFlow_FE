@@ -10,13 +10,13 @@ export function usePatientActions() {
     const editModal = useModal<Patient>();
     const deleteModal = useModal<Patient>();
 
-    const handleCreate = async (body: Pick<Patient, 'name' | 'email' | 'phone'>) => {
+    const handleCreate = async (body: Pick<Patient, 'name' | 'surname' | 'email' | 'phone'>) => {
         await createPatient(body);
         createModal.close();
         router.refresh();
     };
 
-    const handleEdit = async (id: string, body: Partial<Pick<Patient, 'name' | 'email' | 'phone'>>) => {
+    const handleEdit = async (id: string, body: Partial<Pick<Patient, 'name' | 'surname' | 'email' | 'phone'>>) => {
         await updatePatient(id, body);
         editModal.close();
         router.refresh();

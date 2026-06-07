@@ -21,7 +21,7 @@ export default function Pagination({ total, limit, page, onPageChange }: Paginat
         <div className={cls.pagination}>
             <div className={cls.pagInfo}>
                 Showing
-                <strong style={{ color: 'var(--text-1)' }}>{` ${from}–${to} `}</strong>
+                <strong style={{ color: 'var(--text-1)' }}>{` ${from}–${to} `}</strong>
                 of {total}
             </div>
             <div className={cls.pagControls}>

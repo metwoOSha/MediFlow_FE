@@ -1,9 +1,8 @@
 export interface Patient {
     id: string;
     name: string;
+    surname: string;
     email: string;
     phone: string;
-    appointments: number;
-    registered: string;
-    next_visit: string | null;
+    created_at: string;
 }
