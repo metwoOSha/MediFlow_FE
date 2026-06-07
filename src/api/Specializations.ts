@@ -1,4 +1,4 @@
-import { get, post, del } from './http';
+import { get, post, patch, del } from './http';
 import type { Specialization } from '@/types/specializations.types';
 
 const GET_SPECIALIZATIONS_URL = '/specializations';
@@ -11,6 +11,11 @@ export async function getSpecializations(): Promise<Specialization[]> {
 
 export async function createSpecialization(body: Omit<Specialization, 'id' | 'doctors_count'>) {
     const res = await post(GET_SPECIALIZATIONS_URL, body);
+    return res.json();
+}
+
+export async function updateSpecialization(id: string, body: Partial<Omit<Specialization, 'id' | 'doctors_count'>>) {
+    const res = await patch(GET_SPECIALIZATIONS_URL_BY_ID(id), body);
     return res.json();
 }
 

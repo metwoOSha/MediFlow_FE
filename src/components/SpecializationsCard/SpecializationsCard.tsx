@@ -3,8 +3,8 @@
 import { SPEC_ICONS } from '@/config/Specializations.config';
 import { SPEC_COLORS_LIST } from '@/config/Gradient.config';
 import { DefaultIcon } from '@/components/Icons/Specializations/DefaultIcon';
-import cls from './SpecializationsCard.module.css';
 import Buttons from '../Buttons/Buttons';
+import cls from './SpecializationsCard.module.css';
 
 const FALLBACK_COLORS = { sp1: '#8b5cf6', sp2: '#ec4899' };
 
@@ -13,9 +13,18 @@ interface SpecializationsCardProps {
     count: number;
     icon_id: number;
     color_id: number;
+    onEdit: () => void;
+    onDelete: () => void;
 }
 
-export default function SpecializationsCard({ name, count, icon_id, color_id }: SpecializationsCardProps) {
+export default function SpecializationsCard({
+    name,
+    count,
+    icon_id,
+    color_id,
+    onEdit,
+    onDelete,
+}: SpecializationsCardProps) {
     const { sp1, sp2 } = SPEC_COLORS_LIST.find((c) => c.id === color_id) ?? FALLBACK_COLORS;
     const icon = SPEC_ICONS.find((i) => i.id === icon_id)?.icon ?? <DefaultIcon />;
     return (
@@ -26,8 +35,8 @@ export default function SpecializationsCard({ name, count, icon_id, color_id }: 
                 <span className={cls.specCount}>{`${count} doctors`}</span>
             </div>
             <div className={cls.specActions}>
-                <Buttons variant="row" action="edit" />
-                <Buttons variant="row" action="delete" />
+                <Buttons variant="row" action="edit" onClick={onEdit} />
+                <Buttons variant="row" action="delete" onClick={onDelete} />
             </div>
         </div>
     );
