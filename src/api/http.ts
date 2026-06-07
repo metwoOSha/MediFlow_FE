@@ -26,6 +26,7 @@ async function handleResponse(res: Response): Promise<Response> {
 export async function get(url: string, params?: Record<string, string | number>): Promise<Response> {
     const query = params ? '?' + new URLSearchParams(params as Record<string, string>).toString() : '';
     const res = await fetch(`${BASE_URL}${url}${query}`, {
+        credentials: 'include',
         headers: await getAuthHeaders(),
     });
     return handleResponse(res);
@@ -34,6 +35,7 @@ export async function get(url: string, params?: Record<string, string | number>)
 export async function post(url: string, body: unknown): Promise<Response> {
     const res = await fetch(`${BASE_URL}${url}`, {
         method: 'POST',
+        credentials: 'include',
         headers: {
             'Content-Type': 'application/json',
             ...(await getAuthHeaders()),
@@ -46,6 +48,7 @@ export async function post(url: string, body: unknown): Promise<Response> {
 export async function patch(url: string, body?: unknown): Promise<Response> {
     const res = await fetch(`${BASE_URL}${url}`, {
         method: 'PATCH',
+        credentials: 'include',
         headers: {
             'Content-Type': 'application/json',
             ...(await getAuthHeaders()),
@@ -58,6 +61,7 @@ export async function patch(url: string, body?: unknown): Promise<Response> {
 export async function del(url: string): Promise<Response> {
     const res = await fetch(`${BASE_URL}${url}`, {
         method: 'DELETE',
+        credentials: 'include',
         headers: await getAuthHeaders(),
     });
     return handleResponse(res);

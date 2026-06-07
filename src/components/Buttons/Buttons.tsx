@@ -20,7 +20,13 @@ export default function Buttons({ variant = 'icon', icon, className, text, actio
     return (
         <button
             className={`${cls[variant]} ${
-                action === 'edit' ? cls.blue : action === 'delete' ? cls.danger : action === 'schedule' ? cls.cyan : ''
+                action === 'edit'
+                    ? cls.blue
+                    : action === 'delete'
+                      ? cls.danger
+                      : action === 'schedule' || action === 'view'
+                        ? cls.cyan
+                        : ''
             } ${className || ''}`}
             {...props}
         >

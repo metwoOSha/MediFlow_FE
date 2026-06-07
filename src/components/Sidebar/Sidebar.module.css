@@ -44,3 +44,8 @@
     position: relative;
     border: 1px solid transparent;
 }
+
+.navItem:hover {
+    background: var(--glass-hover);
+    color: var(--text-1);
+}

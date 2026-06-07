@@ -3,19 +3,26 @@
 import { Avatar } from '@/components/Avatar/Avatar';
 import Phone from '@/components/Phone/Phone';
 import Buttons from '@/components/Buttons/Buttons';
+import type { Patient } from '@/types/patients.types';
 import cls from './ListItem.module.css';
 
-interface ListItemProps {
-    id: number;
-    name: string;
-    email: string;
-    phone?: string;
-    appointments: number;
-    registered: string;
-    next_visit?: string | null;
+interface ListItemProps extends Patient {
+    onView: () => void;
+    onEdit: () => void;
+    onDelete: () => void;
 }
 
-export default function ListItem({ name, email, phone, appointments, registered, next_visit }: ListItemProps) {
+export default function ListItem({
+    name,
+    email,
+    phone,
+    appointments,
+    registered,
+    next_visit,
+    onView,
+    onEdit,
+    onDelete,
+}: ListItemProps) {
     return (
         <tr className={cls.tr}>
             <td>
@@ -44,9 +51,9 @@ export default function ListItem({ name, email, phone, appointments, registered,
             </td>
             <td style={{ textAlign: 'right' }}>
                 <div className={cls.rowActions}>
-                    <Buttons variant="row" action="view" title="View" />
-                    <Buttons variant="row" action="edit" title="Edit" />
-                    <Buttons variant="row" action="delete" title="Delete" />
+                    <Buttons variant="row" action="view" title="View" onClick={onView} />
+                    <Buttons variant="row" action="edit" title="Edit" onClick={onEdit} />
+                    <Buttons variant="row" action="delete" title="Delete" onClick={onDelete} />
                 </div>
             </td>
         </tr>
