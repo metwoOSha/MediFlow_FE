@@ -97,6 +97,7 @@ export default function EditDoctor({ doctor, onClose, onSave }: EditDoctorProps)
                             <Controller
                                 name="category"
                                 control={control}
+                                rules={{ required: true }}
                                 render={({ field }) => (
                                     <Select
                                         items={CATEGORY_ITEMS}
