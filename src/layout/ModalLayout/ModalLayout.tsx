@@ -10,9 +10,10 @@ interface ModalLayoutProps {
     title: string;
     btnText: string;
     onClose: () => void;
+    onSubmit?: () => void;
 }
 
-export default function ModalLayout({ subtitle, title, btnText, onClose, children }: ModalLayoutProps) {
+export default function ModalLayout({ subtitle, title, btnText, onClose, onSubmit, children }: ModalLayoutProps) {
     return (
         <div className={cls.overlay} onClick={onClose}>
             <div className={cls.modal} onClick={(e) => e.stopPropagation()}>
@@ -28,7 +29,7 @@ export default function ModalLayout({ subtitle, title, btnText, onClose, childre
                 <div className={cls.modalForm}>{children}</div>
                 <div className={cls.modalFoot}>
                     <Buttons variant="ghost" text="Cancel" onClick={onClose} />
-                    <Buttons variant="primary" text={btnText} />
+                    <Buttons variant="primary" text={btnText} onClick={onSubmit} />
                 </div>
             </div>
         </div>

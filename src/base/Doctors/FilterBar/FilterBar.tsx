@@ -1,17 +1,22 @@
 'use client';
 
-import { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { createPortal } from 'react-dom';
+
 import Buttons from '@/components/Buttons/Buttons';
 import Input from '@/components/Input/Input';
 import Select from '@/components/Select/Select';
-import { CATEGORY_ITEMS, SPECIALIZATION_ITEMS } from '@/config/Select.config';
-import ModalLayout from '@/layout/ModalLayout/ModalLayout';
+import Portal from '@/utils/Portal/Portal';
 import NewDoctor from '@/components/Modal/NewDoctor/NewDoctor';
+import { CATEGORY_ITEMS, SPECIALIZATION_ITEMS } from '@/config/Select.config';
+import { useDoctorActions } from '@/hooks/useDoctorActions';
+import type { Specialization } from '@/types/specializations.types';
 
-export default function FilterBar() {
-    const [isOpen, setIsOpen] = useState(false);
+interface FilterBarProps {
+    specializations: Specialization[];
+}
+
+export default function FilterBar({ specializations }: FilterBarProps) {
+    const { createModal, handleCreate } = useDoctorActions();
     const router = useRouter();
     const searchParams = useSearchParams();
 
@@ -40,20 +45,13 @@ export default function FilterBar() {
                 onChange={(value) => updateParams('category', value)}
             />
             <div style={{ flex: 1 }}></div>
-            <Buttons variant="primary" text="Add doctor" onClick={() => setIsOpen(true)} />
+            <Buttons variant="primary" text="Add doctor" onClick={() => createModal.open(true)} />
 
-            {isOpen &&
-                createPortal(
-                    <ModalLayout
-                        subtitle="Doctors"
-                        title="New Doctor"
-                        btnText="Add doctor"
-                        onClose={() => setIsOpen(false)}
-                    >
-                        <NewDoctor />
-                    </ModalLayout>,
-                    document.body,
-                )}
+            {createModal.isOpen && (
+                <Portal onClose={createModal.close}>
+                    <NewDoctor specializations={specializations} onClose={createModal.close} onSave={handleCreate} />
+                </Portal>
+            )}
         </>
     );
 }
