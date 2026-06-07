@@ -8,14 +8,14 @@ import { PillIcon } from '@/components/Icons/Specializations/PillIcon';
 import { SparkleIcon } from '@/components/Icons/Specializations/SparkleIcon';
 import { ToothIcon } from '@/components/Icons/Specializations/ToothIcon';
 
-export const SPECIALIZATION_CONFIG: Record<string, React.ReactNode> = {
-    Cardiology: <HeartIcon />,
-    Neurology: <BrainIcon />,
-    Pediatrics: <PersonIcon />,
-    Orthopedics: <BoneIcon />,
-    Dermatology: <SparkleIcon />,
-    Ophthalmology: <EyeIcon />,
-    Dentistry: <ToothIcon />,
-    'Internal Medicine': <PillIcon />,
-    Pharmacology: <LeafIcon />,
-};
+export const SPEC_ICONS = [
+    { id: 1, icon: <HeartIcon /> },
+    { id: 2, icon: <BrainIcon /> },
+    { id: 3, icon: <PersonIcon /> },
+    { id: 4, icon: <BoneIcon /> },
+    { id: 5, icon: <SparkleIcon /> },
+    { id: 6, icon: <EyeIcon /> },
+    { id: 7, icon: <ToothIcon /> },
+    { id: 8, icon: <PillIcon /> },
+    { id: 9, icon: <LeafIcon /> },
+];

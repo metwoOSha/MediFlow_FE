@@ -11,8 +11,14 @@ interface SpecializationsListProps {
 export default function SpecializationsList({ data }: SpecializationsListProps) {
     return (
         <div className={cls.specGrid}>
-            {data.map(({ id, specialization_name, doctors_count }) => (
-                <SpecializationsCard key={id} spec={specialization_name} count={doctors_count} />
+            {data.map(({ id, specialization_name, doctors_count, icon_id, color_id }) => (
+                <SpecializationsCard
+                    key={id}
+                    name={specialization_name}
+                    count={doctors_count}
+                    icon_id={icon_id}
+                    color_id={color_id}
+                />
             ))}
         </div>
     );

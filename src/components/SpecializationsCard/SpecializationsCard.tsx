@@ -1,22 +1,28 @@
 'use client';
 
-import { getSpecIcon } from '@/helpers/GetSpecIcon';
-import { getSpecGradient } from '@/helpers/GetSpecGradient';
+import { SPEC_ICONS } from '@/config/Specializations.config';
+import { SPEC_COLORS_LIST } from '@/config/Gradient.config';
+import { DefaultIcon } from '@/components/Icons/Specializations/DefaultIcon';
 import cls from './SpecializationsCard.module.css';
 import Buttons from '../Buttons/Buttons';
 
+const FALLBACK_COLORS = { sp1: '#8b5cf6', sp2: '#ec4899' };
+
 interface SpecializationsCardProps {
-    spec: string;
+    name: string;
     count: number;
+    icon_id: number;
+    color_id: number;
 }
 
-export default function SpecializationsCard({ spec, count }: SpecializationsCardProps) {
-    const { sp1, sp2 } = getSpecGradient(spec);
+export default function SpecializationsCard({ name, count, icon_id, color_id }: SpecializationsCardProps) {
+    const { sp1, sp2 } = SPEC_COLORS_LIST.find((c) => c.id === color_id) ?? FALLBACK_COLORS;
+    const icon = SPEC_ICONS.find((i) => i.id === icon_id)?.icon ?? <DefaultIcon />;
     return (
         <div className={cls.specCard} style={{ '--sp-1': sp1, '--sp-2': sp2 } as React.CSSProperties}>
-            <div className={cls.specIcon}>{getSpecIcon(spec)}</div>
+            <div className={cls.specIcon}>{icon}</div>
             <div className={cls.specInfo}>
-                <span className={cls.specName}>{spec}</span>
+                <span className={cls.specName}>{name}</span>
                 <span className={cls.specCount}>{`${count} doctors`}</span>
             </div>
             <div className={cls.specActions}>
