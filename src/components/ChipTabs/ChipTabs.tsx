@@ -1,24 +1,39 @@
 'use client';
 
-import { useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import type { AppointmentCounts } from '@/types/appointments.types';
 import cls from './ChipTabs.module.css';
 
 const CHIP_TABS = [
-    { id: 1, title: 'All', count: 12, color: null },
-    { id: 2, title: 'Pending', count: 6, color: 'var(--amber)' },
-    { id: 3, title: 'Confirmed', count: 4, color: 'var(--green)' },
-    { id: 4, title: 'Cancelled', count: 2, color: 'var(--red)' },
+    { id: 1, title: 'All', color: null },
+    { id: 2, title: 'Pending', color: 'var(--amber)' },
+    { id: 3, title: 'Confirmed', color: 'var(--green)' },
+    { id: 4, title: 'Completed', color: 'var(--blue)' },
+    { id: 5, title: 'Cancelled', color: 'var(--red)' },
 ];
 
-export default function ChipTabs() {
-    const [active, setActive] = useState<string>(CHIP_TABS[0].title);
+export default function ChipTabs({ counts }: { counts: AppointmentCounts }) {
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const active = searchParams.get('status') ?? 'All';
+
+    const handleClick = (title: string) => {
+        const params = new URLSearchParams(searchParams.toString());
+        if (title === 'All') {
+            params.delete('status');
+        } else {
+            params.set('status', title);
+        }
+        router.push(`?${params.toString()}`);
+    };
+
     return (
         <div className={cls.chipTabs}>
-            {CHIP_TABS.map(({ id, title, count, color }) => (
+            {CHIP_TABS.map(({ id, title, color }) => (
                 <span
                     key={id}
                     className={`${cls.chipTab} ${active === title ? cls.active : ''}`}
-                    onClick={() => setActive(title)}
+                    onClick={() => handleClick(title)}
                 >
                     {color && (
                         <span
@@ -27,7 +42,9 @@ export default function ChipTabs() {
                         />
                     )}
                     {title}
-                    <span className={`${cls.count} ${active === title ? cls.countActive : ''}`}>{count}</span>
+                    <span className={`${cls.count} ${active === title ? cls.countActive : ''}`}>
+                        {counts[title as keyof AppointmentCounts]}
+                    </span>
                 </span>
             ))}
         </div>

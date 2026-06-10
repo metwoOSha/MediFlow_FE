@@ -1,13 +1,22 @@
 import StatisticsCard from '@/components/StatisticsCard/StatisticsCard';
 import cls from './StatGrid.module.css';
 
-export default function StatGrid() {
+interface StatGridProps {
+    counts: {
+        total: number;
+        pending: number;
+        checkedIn: number;
+        cancelled: number;
+    };
+}
+
+export default function StatGrid({ counts }: StatGridProps) {
     return (
         <div className={cls.statGrid}>
-            <StatisticsCard label="Appointments today" value={103} />
-            <StatisticsCard label="Awaiting confirmation" value={30} />
-            <StatisticsCard label="Checked in" value={14} />
-            <StatisticsCard label="Cancelled / no-show" value={5} />
+            <StatisticsCard label="Appointments today" value={counts.total} />
+            <StatisticsCard label="Awaiting confirmation" value={counts.pending} />
+            <StatisticsCard label="Checked in" value={counts.checkedIn} />
+            <StatisticsCard label="Cancelled / no-show" value={counts.cancelled} />
         </div>
     );
 }

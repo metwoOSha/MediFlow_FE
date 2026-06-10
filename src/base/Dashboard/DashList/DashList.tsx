@@ -1,5 +1,6 @@
 import Table from '@/components/Table/Table';
 import ListItem from '../ListItem/ListItem';
+import type { Appointment } from '@/types/appointments.types';
 
 const columns = [
     { id: 1, title: 'Patient', width: '36%' },
@@ -8,19 +9,24 @@ const columns = [
     { id: 4, title: 'Status', width: '16%' },
 ];
 
-const DASH_LIST = [
-    {
-        id: 1,
-        name: 'Dmytro Dobrovolskyi',
-        doctor: 'Dr. Amelia Hart',
-        spec: 'Cardiology',
-        time: '09:30',
-        status: 'Confirmed',
-    },
-    { id: 2, name: 'Sarah Johnson', doctor: 'Dr. James Lee', spec: 'Neurology', time: '11:00', status: 'Pending' },
-    { id: 3, name: 'Michael Brown', doctor: 'Dr. Amelia Hart', spec: 'Cardiology', time: '14:15', status: 'Confirmed' },
-];
+export default function DashList({ data }: { data: Appointment[] }) {
+    if (data.length === 0) {
+        return (
+            <p
+                style={{
+                    flex: 1,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'var(--text-3)',
+                    fontSize: 13.5,
+                    margin: 0,
+                }}
+            >
+                No appointments for today
+            </p>
+        );
+    }
 
-export default function DashList() {
-    return <Table columns={columns} data={DASH_LIST} ListItem={ListItem} />;
+    return <Table columns={columns} data={data} ListItem={ListItem} />;
 }

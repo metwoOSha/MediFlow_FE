@@ -1,7 +1,13 @@
 'use client';
 
+import { useState } from 'react';
 import Table from '@/components/Table/Table';
 import ListItem from '../ListItem/ListItem';
+import Portal from '@/utils/Portal/Portal';
+import ManageAppointment from '@/components/Modal/ManageAppointment/ManageAppointment';
+import { useModal } from '@/hooks/useModal';
+import { updateAppointmentStatus } from '@/api/Appointments';
+import type { Appointment } from '@/types/appointments.types';
 
 const columns = [
     { id: 1, title: 'Patient', width: '23%' },
@@ -12,7 +18,8 @@ const columns = [
     { id: 6, title: 'Actions', width: '14%', align: 'right' as const },
 ];
 
-export const APPOINTMENTS_LIST = [
+// Kept for DoctorsList schedule modal and ChipTabs fallback
+export const APPOINTMENTS_LIST: Appointment[] = [
     {
         id: 1,
         name: 'Olivia Chen',
@@ -87,6 +94,56 @@ export const APPOINTMENTS_LIST = [
     },
 ];
 
-export default function AppointmentsList() {
-    return <Table columns={columns} data={APPOINTMENTS_LIST} ListItem={ListItem} />;
+interface AppointmentsListProps {
+    data: Appointment[];
+    filter?: string;
+}
+
+export default function AppointmentsList({ data, filter = 'All' }: AppointmentsListProps) {
+    const manageModal = useModal<Appointment>();
+    const [appointments, setAppointments] = useState<Appointment[]>(data);
+
+    // filter применяется поверх локального состояния (оптимистичные обновления статусов)
+    const visible = filter === 'All' ? appointments : appointments.filter((a) => a.status === filter);
+
+    const handleSave = async (status: string) => {
+        if (!manageModal.data) return;
+        const id = manageModal.data.id;
+        setAppointments((prev) => prev.map((a) => (a.id === id ? { ...a, status } : a)));
+        manageModal.close();
+        await updateAppointmentStatus(id, status);
+    };
+
+    const rows = visible.map((a) => ({
+        ...a,
+        onManage: () => manageModal.open(a),
+    }));
+
+    return (
+        <>
+            {visible.length === 0 ? (
+                <p
+                    style={{
+                        flex: 1,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        color: 'var(--text-3)',
+                        fontSize: 13.5,
+                        margin: 0,
+                    }}
+                >
+                    {filter === 'All' ? 'No appointments for this date' : `No ${filter.toLowerCase()} appointments`}
+                </p>
+            ) : (
+                <Table columns={columns} data={rows} ListItem={ListItem} />
+            )}
+
+            {manageModal.isOpen && manageModal.data && (
+                <Portal onClose={manageModal.close}>
+                    <ManageAppointment appointment={manageModal.data} onClose={manageModal.close} onSave={handleSave} />
+                </Portal>
+            )}
+        </>
+    );
 }

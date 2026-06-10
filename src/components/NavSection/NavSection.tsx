@@ -4,7 +4,6 @@ import type { NavItem } from '@/types/sidebar.types';
 import cls from './NavSection.module.css';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import BadgeDot from '../BadgeDot/BadgeDot';
 
 interface NavSectionProps {
     label: string;
@@ -20,7 +19,6 @@ export default function NavSection({ label, items }: NavSectionProps) {
                 <Link href={href} key={id} className={`${cls.navItem} ${pathname === href ? cls.active : ''}`}>
                     {icon}
                     <span>{label}</span>
-                    {label === 'Doctors' && <BadgeDot number={40} />}
                 </Link>
             ))}
         </nav>

@@ -1,0 +1,298 @@
+.modal {
+    width: 100%;
+    max-width: 460px;
+    border-radius: 22px;
+    padding: 22px;
+    background: linear-gradient(180deg, rgba(20, 26, 40, 0.98), rgba(11, 14, 24, 0.99));
+    border: 1px solid var(--border-3);
+    box-shadow:
+        0 40px 90px -20px rgba(0, 0, 0, 0.75),
+        inset 0 1px 0 rgba(255, 255, 255, 0.07);
+    animation: mbIn 200ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes mbIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.titleWrap {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green);
+}
+
+.title {
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.closeBtn {
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border-radius: 10px;
+    background: var(--glass-1);
+    border: 1px solid var(--border-1);
+    color: var(--text-2);
+    cursor: pointer;
+    transition: all 150ms ease;
+}
+
+.closeBtn:hover {
+    background: var(--glass-2);
+    color: var(--text-1);
+    border-color: var(--border-2);
+}
+
+.form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 13px;
+    margin-bottom: 22px;
+}
+
+.label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-3);
+}
+
+/* Custom select */
+.cs {
+    position: relative;
+}
+
+.csTrigger {
+    width: 100%;
+    height: 42px;
+    padding: 0 12px 0 14px;
+    border-radius: 12px;
+    background: var(--glass-1);
+    border: 1px solid var(--border-1);
+    color: var(--text-1);
+    font-family: inherit;
+    font-size: 13.5px;
+    font-weight: 500;
+    cursor: pointer;
+    outline: none;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    transition: all 160ms ease;
+    text-align: left;
+}
+
+.csTrigger:hover {
+    background: var(--glass-2);
+    border-color: var(--border-2);
+}
+
+.csActive {
+    border-color: color-mix(in srgb, var(--cyan) 55%, transparent);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--cyan) 14%, transparent);
+    background: color-mix(in srgb, var(--cyan) 6%, var(--glass-2));
+}
+
+.csVal {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.csChev {
+    display: grid;
+    place-items: center;
+    color: var(--text-3);
+    flex: none;
+    transition:
+        transform 200ms cubic-bezier(0.2, 0.8, 0.2, 1),
+        color 160ms ease;
+}
+
+.csChevRot {
+    transform: rotate(180deg);
+    color: var(--cyan);
+}
+
+.csDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex: none;
+}
+
+.csPanel {
+    list-style: none;
+    margin: 0;
+    padding: 6px;
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    z-index: 70;
+    max-height: 280px;
+    overflow-y: auto;
+    border-radius: var(--radius-md);
+    background: rgba(11, 14, 24, 0.985);
+    backdrop-filter: blur(28px) saturate(150%);
+    -webkit-backdrop-filter: blur(28px) saturate(150%);
+    border: 1px solid var(--border-3);
+    box-shadow:
+        0 24px 60px -12px rgba(0, 0, 0, 0.7),
+        0 8px 20px -8px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    animation: ddIn 160ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    transform-origin: top center;
+}
+
+@keyframes ddIn {
+    from {
+        opacity: 0;
+        transform: translateY(-6px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.csOpt {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 11px;
+    border-radius: 9px;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--text-2);
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition:
+        background 120ms ease,
+        color 120ms ease;
+}
+
+.csOptSel {
+    background: linear-gradient(
+        135deg,
+        color-mix(in srgb, var(--blue) 20%, transparent),
+        color-mix(in srgb, var(--cyan) 8%, transparent)
+    );
+    color: #fff;
+    border-color: color-mix(in srgb, var(--blue) 30%, transparent);
+}
+
+.csOptSel:hover {
+    filter: brightness(1.08);
+}
+
+.csOptCol {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
+}
+
+.csOptLabel {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.csOptSub {
+    font-size: 11.5px;
+    color: var(--text-3);
+    font-weight: 400;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Footer */
+.foot {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.cancelBtn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 18px;
+    height: 42px;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid var(--border-1);
+    background: var(--glass-1);
+    color: var(--text-2);
+    transition: all 160ms ease;
+    letter-spacing: -0.005em;
+}
+
+.cancelBtn:hover {
+    background: var(--glass-2);
+    color: var(--text-1);
+    border-color: var(--border-2);
+}
+
+.saveBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 18px;
+    height: 42px;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: linear-gradient(180deg, #13c98c 0%, #0d9d6e 100%);
+    color: #fff;
+    box-shadow:
+        0 10px 24px -8px rgba(19, 201, 140, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35),
+        inset 0 -8px 18px -10px rgba(0, 0, 0, 0.35);
+    transition: all 160ms ease;
+    letter-spacing: -0.005em;
+}
+
+.saveBtn:hover {
+    filter: brightness(1.08);
+    box-shadow:
+        0 14px 30px -8px rgba(19, 201, 140, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    transform: translateY(-1px);
+}

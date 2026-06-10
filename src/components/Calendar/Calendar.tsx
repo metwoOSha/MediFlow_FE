@@ -32,7 +32,12 @@ const MONTHS = [
     'December',
 ];
 
-export default function Calendar() {
+interface CalendarProps {
+    onSelect?: (date: string) => void;
+    fullWidth?: boolean;
+}
+
+export default function Calendar({ onSelect, fullWidth }: CalendarProps = {}) {
     const today = new Date();
     const [year, setYear] = useState<number>(today.getFullYear());
     const [month, setMonth] = useState<number>(today.getMonth());
@@ -78,16 +83,22 @@ export default function Calendar() {
         } else setMonth((m) => m + 1);
     }
 
+    function fmt(y: number, m: number, d: number) {
+        return `${MONTHS[m]} ${d}, ${y}`;
+    }
+
     function goToday() {
         setYear(today.getFullYear());
         setMonth(today.getMonth());
         setSelected(today.getDate());
+        onSelect?.(fmt(today.getFullYear(), today.getMonth(), today.getDate()));
     }
 
     function clearDate() {
         setSelected(today.getDate());
         setYear(today.getFullYear());
         setMonth(today.getMonth());
+        onSelect?.(fmt(today.getFullYear(), today.getMonth(), today.getDate()));
     }
 
     const isToday = (day: number) =>
@@ -96,7 +107,7 @@ export default function Calendar() {
     const displayValue = selected ? `${MONTHS[month]} ${selected}, ${year}` : 'Select date';
 
     return (
-        <div className={cls.calendar} ref={ref}>
+        <div className={cls.calendar} ref={ref} style={fullWidth ? { width: '100%' } : undefined}>
             <button
                 type="button"
                 className={`${cls.button} ${open ? cls.buttonActive : ''}`}
@@ -155,6 +166,7 @@ export default function Calendar() {
                                     onClick={() => {
                                         setSelected(day);
                                         setOpen(false);
+                                        onSelect?.(fmt(year, month, day));
                                     }}
                                 >
                                     {day}

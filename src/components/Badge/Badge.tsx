@@ -16,6 +16,7 @@ const STATUS_CLASS: Record<string, string> = {
     Confirmed: 'green',
     Pending: 'amber',
     Cancelled: 'red',
+    Completed: 'blue',
 };
 
 export default function Badge({ text, variant }: BadgeProps) {

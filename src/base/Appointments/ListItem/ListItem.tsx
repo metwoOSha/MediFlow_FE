@@ -2,20 +2,15 @@
 
 import { Avatar } from '@/components/Avatar/Avatar';
 import Badge from '@/components/Badge/Badge';
-import cls from './ListItem.module.css';
 import Buttons from '@/components/Buttons/Buttons';
+import type { Appointment } from '@/types/appointments.types';
+import cls from './ListItem.module.css';
 
-interface ListItemProps {
-    id: number;
-    name: string;
-    doctor: string;
-    spec: string;
-    date: string;
-    time: string;
-    status: string;
+interface ListItemProps extends Appointment {
+    onManage: () => void;
 }
 
-export default function ListItem({ name, doctor, spec, date, time, status }: ListItemProps) {
+export default function ListItem({ name, doctor, spec, date, time, status, onManage }: ListItemProps) {
     return (
         <tr className={cls.tr}>
             <td>
@@ -38,7 +33,7 @@ export default function ListItem({ name, doctor, spec, date, time, status }: Lis
                 <Badge variant="status" text={status} />
             </td>
             <td style={{ textAlign: 'right' }}>
-                <Buttons variant="manage" />
+                <Buttons variant="manage" onClick={onManage} />
             </td>
         </tr>
     );
