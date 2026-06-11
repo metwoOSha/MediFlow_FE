@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { getDoctors } from '@/api/Doctors';
 import { getPatients } from '@/api/Patients';
 import { getAppointments } from '@/api/Appointments';

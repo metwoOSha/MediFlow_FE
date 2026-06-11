@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { getSpecializations } from '@/api/Specializations';
 import FilterBar from '@/base/Specializations/FilterBar/FilterBar';
 import SpecializationsList from '@/base/Specializations/SpecializationsList/SpecializationsList';

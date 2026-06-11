@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { getDoctors } from '@/api/Doctors';
 import { getSpecializations } from '@/api/Specializations';
 import DoctorsList from '@/base/Doctors/DoctorsList/DoctorsList';

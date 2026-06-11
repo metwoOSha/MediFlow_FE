@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import FilterBar from '@/base/Patients/FilterBar/FilterBar';
 import PatientsList from '@/base/Patients/PatientsList/PatientsList';
 import MainLayout from '@/layout/MainLayout/MainLayout';
