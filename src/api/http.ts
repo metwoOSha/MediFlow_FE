@@ -1,4 +1,5 @@
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+// Server components use the backend URL directly; client components go through Next.js proxy
+const BASE_URL = typeof window === 'undefined' ? process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001' : '/api';
 
 async function getAuthHeaders(): Promise<Record<string, string>> {
     if (typeof window === 'undefined') {
