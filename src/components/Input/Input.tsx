@@ -8,13 +8,13 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     style?: React.CSSProperties;
 }
 
-export default function Input({ placeholder, style }: InputProps) {
+export default function Input({ placeholder, style, ...rest }: InputProps) {
     return (
         <div className={cls.headerSearch} style={style}>
             <span className={cls.field}>
                 <SearchIcon />
             </span>
-            <input className={cls.input} placeholder={placeholder} type="text" />
+            <input className={cls.input} placeholder={placeholder} type="text" {...rest} />
         </div>
     );
 }

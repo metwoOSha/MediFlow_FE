@@ -5,7 +5,7 @@ import Calendar from '@/components/Calendar/Calendar';
 import { CloseIcon } from '@/components/Icons/Buttons/CloseIcon';
 import { CheckIcon } from '@/components/Icons/Select/CheckIcon';
 import { ArrowIcon } from '@/components/Icons/Select/ArrowIcon';
-import type { Appointment } from '@/types/appointments.types';
+import type { CreateAppointmentData } from '@/api/Appointments';
 import { SPECIALIZATION_ITEMS } from '@/config/Select.config';
 import type { Doctor } from '@/types/doctors.types';
 import type { Patient } from '@/types/patients.types';
@@ -55,11 +55,19 @@ const MONTHS = [
 ];
 const todayStr = `${MONTHS[today.getMonth()]} ${today.getDate()}, ${today.getFullYear()}`;
 
+function displayDateToISO(display: string): string {
+    // "June 10, 2026" → "2026-06-10"
+    const parts = display.split(' ');
+    const month = String(MONTHS.indexOf(parts[0]) + 1).padStart(2, '0');
+    const day = parts[1].replace(',', '').padStart(2, '0');
+    return `${parts[2]}-${month}-${day}`;
+}
+
 interface NewAppointmentProps {
     doctors: Doctor[];
     patients: Patient[];
     onClose: () => void;
-    onSave: (data: Omit<Appointment, 'id'>) => void;
+    onSave: (data: CreateAppointmentData) => void;
 }
 
 type OpenField = 'patient' | 'doctor' | 'time' | 'status' | null;
@@ -271,10 +279,9 @@ export default function NewAppointment({ doctors, patients, onClose, onSave }: N
                     className={cls.saveBtn}
                     onClick={() =>
                         onSave({
-                            name: `${patient.name} ${patient.surname}`,
-                            doctor: `Dr. ${doctor.name} ${doctor.surname}`,
-                            spec: doctor.specialization_name,
-                            date,
+                            user_id: patient.id,
+                            doctor_id: doctor.id,
+                            date: displayDateToISO(date),
                             time,
                             status: status.value,
                         })

@@ -1,5 +1,6 @@
 'use client';
 
+import { useRef } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 import Buttons from '@/components/Buttons/Buttons';
@@ -19,6 +20,7 @@ export default function FilterBar({ specializations }: FilterBarProps) {
     const { createModal, handleCreate } = useDoctorActions();
     const router = useRouter();
     const searchParams = useSearchParams();
+    const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     const updateParams = (key: string, value: string) => {
         const params = new URLSearchParams(searchParams.toString());
@@ -31,9 +33,18 @@ export default function FilterBar({ specializations }: FilterBarProps) {
         router.push(`?${params.toString()}`);
     };
 
+    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (debounceRef.current) clearTimeout(debounceRef.current);
+        debounceRef.current = setTimeout(() => updateParams('search', e.target.value), 400);
+    };
+
     return (
         <>
-            <Input placeholder="Search doctors by name…" />
+            <Input
+                placeholder="Search doctors by name…"
+                defaultValue={searchParams.get('search') ?? ''}
+                onChange={handleSearch}
+            />
             <Select
                 title="All specializations"
                 items={SPECIALIZATION_ITEMS}

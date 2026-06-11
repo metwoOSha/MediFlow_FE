@@ -38,7 +38,11 @@ export default async function AppointmentsPage({
 
     return (
         <MainLayout FilterBar={<FilterBar doctors={doctors} patients={patients} counts={counts} />}>
-            <AppointmentsList key={selectedDate} data={appointments} filter={status ?? 'All'} />
+            <AppointmentsList
+                key={`${selectedDate}-${appointments.length}`}
+                data={appointments}
+                filter={status ?? 'All'}
+            />
         </MainLayout>
     );
 }

@@ -4,8 +4,12 @@ import type { Patient } from '@/types/patients.types';
 const PATIENTS_URL = '/users/patients';
 const PATIENT_URL = (id: string) => `/users/patients/${id}`;
 
-export async function getPatients(page = 1, limit = 10): Promise<{ patients: Patient[]; total: number }> {
-    const res = await get(PATIENTS_URL, { page, limit });
+export async function getPatients(
+    page = 1,
+    limit = 10,
+    search?: string,
+): Promise<{ patients: Patient[]; total: number }> {
+    const res = await get(PATIENTS_URL, { page, limit, ...(search && { search }) });
     return res.json();
 }
 

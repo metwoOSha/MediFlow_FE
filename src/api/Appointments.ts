@@ -1,4 +1,4 @@
-import { get, patch } from './http';
+import { get, patch, post } from './http';
 import type { Appointment, AppointmentsResponse } from '@/types/appointments.types';
 
 const APPOINTMENTS_URL = '/appointments';
@@ -20,8 +20,8 @@ const MONTHS = [
 ];
 
 function formatDate(iso: string): string {
-    const d = new Date(iso);
-    return `${MONTHS[d.getUTCMonth()]} ${d.getUTCDate()}, ${d.getUTCFullYear()}`;
+    const [year, month, day] = iso.slice(0, 10).split('-').map(Number);
+    return `${MONTHS[month - 1]} ${day}, ${year}`;
 }
 
 function capitalize(s: string): string {
@@ -60,5 +60,17 @@ export async function getAppointments(params?: Record<string, string | number>):
 }
 
 export async function updateAppointmentStatus(id: number, status: string): Promise<void> {
-    await patch(APPOINTMENT_URL(id), { status });
+    await patch(APPOINTMENT_URL(id), { status: status.toLowerCase() });
+}
+
+export interface CreateAppointmentData {
+    user_id: string;
+    doctor_id: string;
+    date: string;
+    time: string;
+    status: string;
+}
+
+export async function createAppointment(data: CreateAppointmentData): Promise<void> {
+    await post(APPOINTMENTS_URL, { ...data, status: data.status.toLowerCase() });
 }

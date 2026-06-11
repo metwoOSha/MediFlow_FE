@@ -8,9 +8,9 @@ import MainLayout from '@/layout/MainLayout/MainLayout';
 export default async function DoctorsPage({
     searchParams,
 }: {
-    searchParams: Promise<{ page?: string; specialization?: string; category?: string }>;
+    searchParams: Promise<{ page?: string; specialization?: string; category?: string; search?: string }>;
 }) {
-    const { page: pageParam, specialization, category } = await searchParams;
+    const { page: pageParam, specialization, category, search } = await searchParams;
     const page = Number(pageParam) || 1;
     const limit = 8;
 
@@ -20,6 +20,7 @@ export default async function DoctorsPage({
             page,
             ...(specialization && { specialization }),
             ...(category && { category }),
+            ...(search && { search }),
         }),
         getSpecializations(),
     ]);

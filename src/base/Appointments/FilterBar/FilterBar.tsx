@@ -7,7 +7,8 @@ import Buttons from '@/components/Buttons/Buttons';
 import Portal from '@/utils/Portal/Portal';
 import NewAppointment from '@/components/Modal/NewAppointment/NewAppointment';
 import { useModal } from '@/hooks/useModal';
-import type { Appointment, AppointmentCounts } from '@/types/appointments.types';
+import type { AppointmentCounts } from '@/types/appointments.types';
+import { createAppointment, type CreateAppointmentData } from '@/api/Appointments';
 import type { Doctor } from '@/types/doctors.types';
 import type { Patient } from '@/types/patients.types';
 import cls from './FilterBar.module.css';
@@ -53,9 +54,10 @@ export default function FilterBar({ doctors, patients, counts }: FilterBarProps)
         router.push(`?${params.toString()}`);
     };
 
-    const handleSave = (data: Omit<Appointment, 'id'>) => {
-        console.log('New appointment:', data);
+    const handleSave = async (data: CreateAppointmentData) => {
+        await createAppointment(data);
         newModal.close();
+        router.refresh();
     };
 
     return (
