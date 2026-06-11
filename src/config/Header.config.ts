@@ -24,4 +24,9 @@ export const HEADER_CONFIG = {
         crumb: 'CATALOG',
         title: 'Specializations',
     },
+    '/admin/settings': {
+        id: 6,
+        crumb: 'SYSTEM',
+        title: 'Settings',
+    },
 } as const;

@@ -17,7 +17,7 @@ interface HeaderProps extends React.HTMLAttributes<HTMLElement> {
 
 export default function Header({ userName, role, ...props }: HeaderProps) {
     const pathname = usePathname();
-    const page = HEADER_CONFIG[pathname as keyof typeof HEADER_CONFIG];
+    const page = HEADER_CONFIG[pathname as keyof typeof HEADER_CONFIG] ?? { crumb: '', title: '' };
     return (
         <header className={cls.header} {...props}>
             <div className={cls.hamburgerButton}>
