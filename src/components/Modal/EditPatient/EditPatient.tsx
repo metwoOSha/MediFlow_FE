@@ -1,6 +1,7 @@
 'use client';
 
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
+import { IMaskInput } from 'react-imask';
 
 import { CloseIcon } from '@/components/Icons/Buttons/CloseIcon';
 import { CheckIcon } from '@/components/Icons/Select/CheckIcon';
@@ -24,6 +25,7 @@ export default function EditPatient({ patient, onClose, onSave }: EditPatientPro
     const {
         register,
         handleSubmit,
+        control,
         formState: { isValid },
     } = useForm<FormData>({
         mode: 'onChange',
@@ -74,7 +76,21 @@ export default function EditPatient({ patient, onClose, onSave }: EditPatientPro
                     </div>
                     <div className={`${cls.field} ${cls.full}`}>
                         <span className={cls.label}>Phone</span>
-                        <input className={cls.input} type="tel" {...register('phone', { required: true })} />
+                        <Controller
+                            name="phone"
+                            control={control}
+                            rules={{ required: true, minLength: 17 }}
+                            render={({ field }) => (
+                                <IMaskInput
+                                    mask="+00(000) 000-0000"
+                                    placeholder="+38(066) 555-0000"
+                                    defaultValue={field.value}
+                                    onAccept={(val: string) => field.onChange(val)}
+                                    inputRef={field.ref}
+                                    className={cls.input}
+                                />
+                            )}
+                        />
                     </div>
                 </div>
 

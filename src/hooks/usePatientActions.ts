@@ -10,7 +10,7 @@ export function usePatientActions() {
     const editModal = useModal<Patient>();
     const deleteModal = useModal<Patient>();
 
-    const handleCreate = async (body: Pick<Patient, 'name' | 'surname' | 'email' | 'phone'>) => {
+    const handleCreate = async (body: Pick<Patient, 'name' | 'surname' | 'email' | 'phone'> & { password: string }) => {
         await createPatient(body);
         createModal.close();
         router.refresh();

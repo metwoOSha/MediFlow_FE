@@ -11,11 +11,13 @@ import { HamburgerIcon } from '../Icons/Header/HamburgerIcon';
 import AdminChip from '../AdminChip/AdminChip';
 
 interface HeaderProps extends React.HTMLAttributes<HTMLElement> {
-    userName: string;
+    firstName: string;
+    lastName: string;
     role: string;
+    email: string;
 }
 
-export default function Header({ userName, role, ...props }: HeaderProps) {
+export default function Header({ firstName, lastName, role, email, ...props }: HeaderProps) {
     const pathname = usePathname();
     const page = HEADER_CONFIG[pathname as keyof typeof HEADER_CONFIG] ?? { crumb: '', title: '' };
     return (
@@ -30,7 +32,7 @@ export default function Header({ userName, role, ...props }: HeaderProps) {
             <div className={cls.headerActions}>
                 {/* <Buttons variant="icon" icon={<BellIcon />} /> */}
                 {/* <Buttons variant="icon" icon={<SettingsHeaderIcon />} /> */}
-                <AdminChip name={userName} role={role} />
+                <AdminChip firstName={firstName} lastName={lastName} role={role} email={email} />
             </div>
         </header>
     );

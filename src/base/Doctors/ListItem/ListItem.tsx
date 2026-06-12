@@ -58,12 +58,14 @@ export default function ListItem({
                 <div className={cls.col}>
                     <div className={cls.scheduleChips}>
                         {WEEK_DAYS.map(({ id, day }) => (
-                            <div key={id} className={`${cls.dayChip} ${day_of_week.includes(id) ? cls.on : ''}`}>
+                            <div key={id} className={`${cls.dayChip} ${day_of_week?.includes(id) ? cls.on : ''}`}>
                                 {day}
                             </div>
                         ))}
                     </div>
-                    <span className={cls.time}>{`${time_start.slice(0, 5)} - ${time_end.slice(0, 5)}`}</span>
+                    <span className={cls.time}>
+                        {time_start && time_end ? `${time_start.slice(0, 5)} - ${time_end.slice(0, 5)}` : '—'}
+                    </span>
                 </div>
             </td>
             <td style={{ textAlign: 'right' }}>

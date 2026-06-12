@@ -30,3 +30,16 @@ export async function updateDoctor(
     const res = await patch(`${GET_DOCTORS_URL}/${id}`, body);
     return res.json();
 }
+
+export async function createSchedule(doctorId: string, day_of_week: number[], time_start: string, time_end: string) {
+    await post(`${GET_DOCTORS_URL}/${doctorId}/schedule`, {
+        day_of_week,
+        time_start,
+        time_end,
+        slot_duration_minutes: 30,
+    });
+}
+
+export async function deleteSchedule(doctorId: string) {
+    await del(`${GET_DOCTORS_URL}/${doctorId}/schedule`);
+}

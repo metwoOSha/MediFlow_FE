@@ -1,0 +1,113 @@
+.page {
+    composes: glass from '../../styles/mixins.module.css';
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background:
+        radial-gradient(520px 280px at 0% 0%, color-mix(in srgb, var(--blue) 10%, transparent), transparent 62%),
+        radial-gradient(480px 320px at 100% 100%, color-mix(in srgb, var(--cyan) 7%, transparent), transparent 60%),
+        linear-gradient(180deg, var(--glass-2), var(--glass-1));
+    overflow: hidden;
+}
+
+.bone {
+    background: linear-gradient(90deg, var(--glass-1) 25%, var(--glass-3) 50%, var(--glass-1) 75%);
+    background-size: 400% 100%;
+    animation: shimmer 1.6s ease infinite;
+    border-radius: 8px;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.filterBar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 22px;
+    border-bottom: 1px solid var(--border-1);
+}
+
+.filterInput {
+    height: 38px;
+    width: 220px;
+}
+
+.filterBtn {
+    height: 38px;
+    width: 100px;
+}
+
+.table {
+    flex: 1;
+    padding: 0 8px;
+    overflow: hidden;
+}
+
+.thead {
+    display: flex;
+    gap: 12px;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border-1);
+}
+
+.th {
+    height: 10px;
+    flex: 1;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+    border-bottom: 1px solid var(--border-1);
+}
+
+.cellUser {
+    flex: 1.4;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+.cellText {
+    height: 12px;
+    flex: 1;
+}
+
+.cell {
+    flex: 1;
+    height: 12px;
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 22px;
+    border-top: 1px solid var(--border-1);
+}
+
+.footerText {
+    height: 11px;
+    width: 120px;
+}
+
+.footerPag {
+    height: 32px;
+    width: 180px;
+}

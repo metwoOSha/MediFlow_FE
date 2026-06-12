@@ -13,7 +13,9 @@ export async function getPatients(
     return res.json();
 }
 
-export async function createPatient(body: Pick<Patient, 'name' | 'surname' | 'email' | 'phone'>) {
+export async function createPatient(
+    body: Pick<Patient, 'name' | 'surname' | 'email' | 'phone'> & { password: string },
+) {
     const res = await post(PATIENTS_URL, body);
     return res.json();
 }

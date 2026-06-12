@@ -1,3 +1,7 @@
+.wrapper {
+    position: relative;
+}
+
 .adminChip {
     display: flex;
     align-items: center;
@@ -7,6 +11,14 @@
     background: var(--glass-1);
     border: 1px solid var(--border-1);
     cursor: pointer;
+    transition:
+        background 140ms ease,
+        border-color 140ms ease;
+}
+
+.adminChip:hover {
+    background: var(--glass-2);
+    border-color: var(--border-2);
 }
 
 .meta {

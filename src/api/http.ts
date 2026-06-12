@@ -18,8 +18,10 @@ async function getAuthHeaders(): Promise<Record<string, string>> {
 
 async function handleResponse(res: Response): Promise<Response> {
     if (!res.ok) {
-        const error = await res.json().catch(() => ({ message: `HTTP error: ${res.status}` }));
-        throw new Error(error.message);
+        const body = await res.json().catch(() => null);
+        const message =
+            body?.message || (body?.errors?.length ? body.errors[0].message : null) || `HTTP error: ${res.status}`;
+        throw new Error(message);
     }
     return res;
 }

@@ -24,11 +24,9 @@ export default function WorkDay({ initialDays, onChange }: WorkDayProps) {
     );
 
     function toggleDay(id: number) {
-        setDays((prev) => {
-            const next = prev.map((d) => (d.id === id ? { ...d, active: !d.active } : d));
-            onChange?.(next.filter((d) => d.active).map((d) => d.id));
-            return next;
-        });
+        const next = days.map((d) => (d.id === id ? { ...d, active: !d.active } : d));
+        setDays(next);
+        onChange?.(next.filter((d) => d.active).map((d) => d.id));
     }
 
     return (
